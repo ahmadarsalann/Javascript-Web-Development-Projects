@@ -31,13 +31,13 @@ const staff = [{name: 'Stephen Davies', role: "Professor",  department: "Compute
    returns the associated telephone number. If the person's name is not
    found it returns the string 'not found'
 */
-const getNumber = (person, book) => {
-    for(let x = 0; x < book.length; x++){
-	    if(person == book[x].name){
-		    return book[x].phone;
+const getNumber = (person, book) => {//uses person name and book array 
+    for(let x = 0; x < book.length; x++){//loops through the array
+	    if(person == book[x].name){//if person name equals to json object name
+		    return book[x].phone; //return the phonenumber of that object
 	    }
     }
-    return "not found";
+    return "not found";//else return not found
 }
 
 
@@ -53,15 +53,15 @@ const getNumber = (person, book) => {
 */
 
 const find = (role, phonebook) => {
-    let answer = [];
+    let answer = [];//initialize an array
     // TODO
-	for(let x = 0; x < phonebook.length; x++){
-		if(role == phonebook[x].role){
-			answer[x] = {employee: phonebook[x].name};
+	for(let x = 0; x < phonebook.length; x++){//loop through the phonebook array
+		if(role == phonebook[x].role){//if the object role equals to the role
+			answer[x] = {employee: phonebook[x].name};//make an object with employee name and put it in the array
 		}//end of if
 	}//end of for
 
-    return answer;
+    return answer;//return the array
 }
 
 
@@ -80,20 +80,20 @@ const find = (role, phonebook) => {
         Sales: [ 'Ichika' ]
     }s
 */
-const roles = (book) => {
-    let answer = {};
+const roles = (book) => {   //take in the array
+    let answer = {}; //initializes the object
     
-    for(const g of book){
-	    if(answer[g.role]){
-		    answer[g.role].push(g.name);
-	    }
+    for(const g of book){ //makes a loop that goes through the book array
+	    if(answer[g.role]){//put the role in the object 
+		    answer[g.role].push(g.name);//pushes the name associated with that role to the object
+	    }//end of if
 	    else{
-		    answer[g.role] = [g.name];
-	    }
-    }
+		    answer[g.role] = [g.name];//makes a new role and pushes the name associated with it to the new object
+	    }//end of else
+    }//end of for
     
     return answer;
-}
+}//end of method
 
 let answer = getNumber('Clara', phonebook);
 assert.equal(answer, '512.717.5690');
