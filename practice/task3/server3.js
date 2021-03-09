@@ -62,15 +62,15 @@ app.get("/listAll", (req, res) => {
    It returns the json object containing all the information for a campground
    */
 app.get('/search', (req, res) => {
-	let searchTerm = req.query.q;
-	console.log(`Search for ${searchTerm}`);
-	let answer = {};
-	for(let x = 0; x < campgrounds.length; x++){
-		if(campgrounds[x].name == searchTerm){
-			answer = campgrounds[x];
-		}
-	}
-	res.json(answer);
+	let searchTerm = req.query.q;//to get the campground name from postman
+	console.log(`Search for ${searchTerm}`);//prints the name
+	let answer = {};//make a answer object
+	for(let x = 0; x < campgrounds.length; x++){//a for loop to loop through the campgrounds array
+		if(campgrounds[x].name == searchTerm){//if name equals to name from post man
+			answer = campgrounds[x];//put it in the answer object
+		}//end of if
+	}//end of for
+	res.json(answer);//returns the answer
 })
 
 
@@ -123,20 +123,20 @@ app.get('/search', (req, res) => {
 
 */
 app.get('/fit', (req, res) => {
-	let searchTerm = req.query.length;
-	let hopeful = {};
-	let results = [];
+	let searchTerm = req.query.length;//to get the length of the RV
+	let hopeful = {};//make a object
+	let results = [];//make an array
 	// TO DO
-	let y = 0;
-	for(let x = 0; x < campgrounds.length; x++){
-		if(campgrounds[x].lengthLimit > searchTerm){
-			hopeful = {campground: campgrounds[x].name, location: campgrounds[x].town, maxLength: campgrounds[x].lengthLimit};
-			results[y] = hopeful;
-			y++;
-		}
-	}
+	let y = 0;//initialize y to 0
+	for(let x = 0; x < campgrounds.length; x++){//for loop to loop throught the campground array
+		if(campgrounds[x].lengthLimit > searchTerm){//if campground Rv length is greater than the searchterm length
+			hopeful = {campground: campgrounds[x].name, location: campgrounds[x].town, maxLength: campgrounds[x].lengthLimit};//put it in hopeful object
+			results[y] = hopeful;//put the object in array
+			y++;//increment y
+		}//end of if
+	}//end of for
 
-	res.json({campgrounds: results});
+	res.json({campgrounds: results});//returns the new array
 })
 
 
@@ -175,33 +175,33 @@ app.get('/fit', (req, res) => {
 
 // TO DO
 app.get('/elevation', (req, res) => {
-	let searchTerm = req.query.altitude;
-	let searchTerm2 = req.query.direction;
-	let hopeful = {};
-	let results = [];
+	let searchTerm = req.query.altitude;//to get the altitude specified in postman
+	let searchTerm2 = req.query.direction;//to see if we have to return higher altitude or lower altitude campgrounds
+	let hopeful = {};//initialize an object
+	let results = [];//initialize the array
 	// TO DO
-	let y = 0;
-	for(let x = 0; x < campgrounds.length; x++){
-		if(searchTerm2 == "higher"){
-			if(campgrounds[x].elevation > searchTerm){
-				hopeful = {campground: campgrounds[x].name, elevation: campgrounds[x].elevation, town: campgrounds[x].town};
-				results[y] = hopeful;
-				y++;
+	let y = 0;//initialize the y to 0
+	for(let x = 0; x < campgrounds.length; x++){//loop through the campground array
+		if(searchTerm2 == "higher"){//if the search term 2 is higher
+			if(campgrounds[x].elevation > searchTerm){//then see if the elevation is higher than the search term
+				hopeful = {campground: campgrounds[x].name, elevation: campgrounds[x].elevation, town: campgrounds[x].town};//put the campground in the object
+				results[y] = hopeful;//put the object in the array
+				y++;//increment y
 			}//end of if
-		}
-		if(searchTerm2 == "lower"){
-			if(campgrounds[x].elevation < searchTerm){
-				hopeful = {campground: campgrounds[x].name, elevation: campgrounds[x].elevation, town: campgrounds[x].town};
-				results[y] = hopeful;
-				y++;
+		}//end of higher if statement
+		if(searchTerm2 == "lower"){//if the searchterm is lower
+			if(campgrounds[x].elevation < searchTerm){//check if the altitude is lower than the searchterm
+				hopeful = {campground: campgrounds[x].name, elevation: campgrounds[x].elevation, town: campgrounds[x].town};//put it in the object
+				results[y] = hopeful;//put the object in the array
+				y++;//increment y
 			}//end of if
-		}
-	}	
+		}//end of if
+	}//end of for	
 
 
 
 
-	res.json({campgrounds: results});
+	res.json({campgrounds: results});//return the new array
 })
 
 
