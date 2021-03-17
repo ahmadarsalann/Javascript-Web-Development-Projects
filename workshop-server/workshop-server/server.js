@@ -31,6 +31,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/api', async (req, res) => {
+	//For checking the database, and add or report the status
 	const work = req.body.workshop;
 	const attend = req.body.attendee;
 	try{
@@ -51,6 +52,7 @@ app.post('/api', async (req, res) => {
 })
 
 app.get('/api', async (req, res) => {
+	//For reporting the workshop that are in the database only if work is undefined
 	let work = req.query.workshop;
 	console.log(work);
 	if(work == undefined){
@@ -64,14 +66,14 @@ app.get('/api', async (req, res) => {
 		catch (err){
 			console.log(err);
 		}
-	}else{
+	}else{ //otherwise check and report the attendees in the workshop
 		try{
 			const template1 = "Select attendee from pain where workshop = $1;"
 			const check = await pool.query(template1, [work]);
-			if(check.rowCount == 0){
+			if(check.rowCount == 0){ //if rowcount is 0 then print this
 				res.json({error: "workshop not found"});
 			}//end of if
-			else{
+			else{ //otherwise report the attendees
 				const results = check.rows.map((row) => { return row.attendee});
 				res.json({attendees : results});
 			}
