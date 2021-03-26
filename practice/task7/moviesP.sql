@@ -1,5 +1,5 @@
 
-CREATE DATABASE  movie;
+CREATE DATABASE movie;
 \c movie;
 
 
