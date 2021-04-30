@@ -17,7 +17,7 @@ class Food extends React.Component {
 
 
 		// fetch the back-end response
-		fetch(`http://localhost:8080/listfood?name=${evt.target.value}`)
+		fetch(`http://35.196.17.177/api/listfood?name=${evt.target.value}`)
 			.then((resp) => {
 				return resp.json();
 			})

@@ -2,7 +2,7 @@ require("isomorphic-fetch");
 
 function getfoodInfo(name) {
 	console.log("Fetching");
-	return fetch(`http://localhost:8080/listfood?name=${name}`).then(function(
+	return fetch(`http://35.196.17.177/api/listfood?name=${name}`).then(function(
 		resp
 	) {
 		return resp.json();

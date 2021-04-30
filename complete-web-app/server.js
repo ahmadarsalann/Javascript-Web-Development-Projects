@@ -20,7 +20,7 @@ const config = {
 
 const pool = new Pool(config);
 
-app.get("/listfood", async (req, res) => {
+app.get("/api/listfood", async (req, res) => {
 	const name = req.query.name;
 	let fin = {};
 	let y = 0;
