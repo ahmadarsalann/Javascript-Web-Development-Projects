@@ -2,16 +2,29 @@ import Layout from "../components/MyLayout.js";
 import {foodInfo} from '../lib/utils.js';
 import React from "react";
 import * as ReactBootStrap from "react-bootstrap";
-class Home extends React.Component {
+
+class Food extends React.Component {
 	constructor(props){
 		super(props);
-		this.state = { search: ""};
+		this.state = {
+			search: "",
+			array:[],
+		};
 	}
-	async handleUpdate(evt){
-		this.setState({ search: evt.target.value});
-		const food = await foodInfo(this.state.search);
-		this.setState({food});
-		
+	handleSearch(evt){
+		// set the state
+		this.setState({search: evt.target.value});
+
+
+		// fetch the back-end response
+		fetch(`http://localhost:8080/listfood?name=${evt.target.value}`)
+			.then((resp) => {
+				return resp.json();
+			})
+			.then((response) => {
+				this.setState({ array: response });
+			});
+		console.log(this.state.array);
 	}
 	render(){
 		return (
@@ -38,33 +51,33 @@ class Home extends React.Component {
 			className = "input-style"
 			type = "text"
 			placeholder = "Search"
-			value = {this.state.search} onChange={this.handleUpdate.bind(this)}
+			value = {this.state.search} onChange={this.handleSearch.bind(this)}
 
 			/>
-			{ this.state.food ? (
+			{ this.state.array ? (
 				<div className="text-style">
-					<table>
-				                <thead>
-				                       <tr>
-				                           <th>Description</th>
-				                           <th>Kcal</th>
-				                           <th>Protein(g)</th>
-				                           <th>Fats(g)</th>
-				                           <th>Carbs(g)</th>
-				                        </tr>
-				                </thead>
-					<tbody>
-					{this.state.food.map((food, i) =>(
-						 <tr>
-							<td>{food.Description}</td>
-							<td>{food.Kcal}</td>
-							<td>{food.Protein}</td>
-							<td>{food.Fats}</td>
-							<td>{food.Carbs}</td>
-						</tr>
-					))}
-					</tbody>
-				       </table>
+				<table>
+				<thead>
+				<tr>
+				<th>Description</th>
+				<th>Kcal</th>
+				<th>Protein(g)</th>
+				<th>Fats(g)</th>
+				<th>Carbs(g)</th>
+				</tr>
+				</thead>
+				<tbody>
+				{this.state.array.map((food, i) =>(
+					<tr>
+					<td>{food.Description}</td>
+					<td>{food.Kcal}</td>
+					<td>{food.Protein}</td>
+					<td>{food.Fats}</td>
+					<td>{food.Carbs}</td>
+					</tr>
+				))}
+				</tbody>
+				</table>
 				<br></br>
 				</div>
 			) : null}
@@ -166,4 +179,4 @@ class Home extends React.Component {
 		);
 	}
 }
-export default Home;
+export default Food;

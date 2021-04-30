@@ -19,7 +19,7 @@ async handleSearch(evt){
 	}else{
 		good = 1;
 	}
-	this.setState({campinfo});
+	console.log(this.setState({campinfo}));
 }
 
       render(){
