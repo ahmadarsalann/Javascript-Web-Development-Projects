@@ -17,7 +17,11 @@ export default function Header() {
 		<a>Home</a>
 		</Link>
 		&nbsp; &nbsp; &nbsp;
-		{jsCookie.get("screenname") ? (
+		<Link href="/search">
+		<a>Search</a>
+		</Link>
+		&nbsp; &nbsp; &nbsp;
+		{jsCookie.get("username") ? (
 			<Link href="/logout">
 			<a>Logout</a>
 			</Link>
@@ -27,13 +31,13 @@ export default function Header() {
 			</Link>
 		)}
 		&nbsp; &nbsp; &nbsp;
-	{jsCookie.get("screenname") ? null : (
+	{jsCookie.get("username") ? null : (
 		<Link href="/register">
 		<a>Register</a>
 		</Link>
 	)}
 		&nbsp; &nbsp; &nbsp;&nbsp;
-	{jsCookie.get("screenname")}
+	{jsCookie.get("username")}
 		<style jsx>{`
 		      .menu-style {
 				margin: auto auto;
