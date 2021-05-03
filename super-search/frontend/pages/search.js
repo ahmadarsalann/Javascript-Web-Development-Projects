@@ -1,4 +1,4 @@
-import Layout from "../components/MyLayout.js";
+import Layout1 from "../components/MyLayout2.js";
 import {foodInfo} from '../lib/utils.js';
 import React from "react";
 
@@ -27,10 +27,20 @@ class places extends React.Component {
 
 	render(){
 		return (
-			<Layout>
-			<h1>Nutritional Information About Food</h1>
+			<Layout1>
+			<div className = "yep">
+			<img src="/static/logo.svg" className= "image1"
+			style={{
+				width: "300px",
+					height: "150px",
+					padding: "0",
 
-			<h3>Food Search</h3>
+			}}
+			/>
+			<h1>React Search</h1>
+
+			<h3>Find Places Below</h3>
+			</div>
 			<p>
 			<input
 			className = "input-style"
@@ -64,26 +74,37 @@ class places extends React.Component {
 			</p>
 
 			<style jsx>{`
+				.yep {
+					background-color: black;
+					}
+				.image1 {
+					animation: rotation infinite 20s linear;
+					pointer-events: none;
+					margin-left: auto;
+					margin-right: auto;
+					left: 0;
+					right: 0;
+					text-align: center;
+					z-index: 2;
+				}
+				@keyframes rotation {
+					from {
+						transform: rotate(0deg);
+					}
+					to {
+						transform: rotate(359deg);
+					}
+				}
+
 				 h1 {
 					font-family: "Comic Sans MS";
-					
 					margin-left: auto;
 					margin-right: auto;
 					left: 0;
 					right: 0;
 					top: 150px;
 					text-align:center;
-					color: Black;
-				}
-				h3 {
-					font-family: "Times New Roman";
-					
-					margin-left: auto;
-					margin-right: auto;
-					left: 0;
-					right: 0;
-					top: 250px;
-					text-align:center;
+					color: white;
 				}
 
 				.input-style  {
@@ -114,16 +135,17 @@ class places extends React.Component {
 				th, td{
 					padding: 8px;
 					text-align: left;
+					color: black;
 					font-family: Arial, Helvetica, sans-serif;
 					border-bottom: 2px solid #ddd;
 				}
-																									td{
+																		   td{
 					font-weight: 540;
-																									}
-																									tr:nth-child(even) {background-color: #f2f2f2;}
+																			}
+				   tr:nth-child(even) {background-color: #f2f2f2;}
 
 					`}</style>
-			</Layout>
+			</Layout1>
 		);
 	}
 }

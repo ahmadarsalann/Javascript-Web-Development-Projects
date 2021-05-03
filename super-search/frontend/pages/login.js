@@ -34,12 +34,12 @@ class Login extends React.Component {
 			jsCookie.set("username", loggedInUser.username);
 			Router.replace("/loggedin");
 		}else if(loggedInUser.error == "Password Incorrect"){
-			
+
 			this.setState({good:true});
 		}else{
 			this.setState({great:true});	
 		}
-		
+
 
 	}
 
@@ -49,6 +49,14 @@ class Login extends React.Component {
 			<Layout
 			style={{ margin: "auto auto", width: "600px", textAlign: "center" }}
 			>
+			<img src="/static/logo.svg" className= "image1"
+			style={{
+				width: "300px",
+					height: "150px",
+					padding: "0",
+
+			}}
+			/>
 			<h2>Login</h2>
 			<label htmlFor="username" className="text-style">
 			Username:{" "}
@@ -85,13 +93,34 @@ class Login extends React.Component {
 			<br /> <br />
 			<style jsx>{`
 							h1,
-							h2,
+							h2 {
+								color: black;
+								font-family: "Comic Sans MS";
+								}
 							h3,
 							h4,
 							a,
 							p {
 								color: #1f618d;
 								font-family: "Arial";
+							}
+							.image1 {
+							       	animation: rotation infinite 20s linear;
+								pointer-events: none;
+								margin-left: auto;
+								margin-right: auto;
+								left: 0;
+								right: 0;
+								text-align: center;
+								z-index: 2;
+							}
+							@keyframes rotation {
+								from {
+									transform: rotate(0deg);
+								}
+								to {
+									transform: rotate(359deg);
+								}
 							}
 
 							.button-style {
@@ -104,7 +133,11 @@ class Login extends React.Component {
 								font-family: "Arial";
 								line-height: 1.9;
 								font-size: 1.4rem;
+								opacity: 0.75;
+								transition: 0.3s;
+								cursor: pointer;
 							}
+							.button-style:hover {opacity: 1}
 
 							.text-style {
 								font-size: 1.4rem;

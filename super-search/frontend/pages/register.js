@@ -43,6 +43,14 @@ class Login extends React.Component {
 			<Layout
 			style={{ margin: "auto auto", width: "600px", textAlign: "center" }}
 			>
+			<img src="/static/logo.svg" className= "image1"
+			style={{
+				width: "300px",
+					height: "150px",
+					padding: "0",
+
+			}}
+			/>
 			<h2>Register for an Account</h2>
 			<label htmlFor="username" className="text-style">
 			Username:{" "}
@@ -82,7 +90,10 @@ class Login extends React.Component {
 			<br /> <br />
 			<style jsx>{`
 				  h1,
-				  h2,
+				  h2{
+				  	color: black;
+					font-family: "Comic Sans MS";
+				}
 				  h3,
 				  h4,
 				  a,
@@ -90,18 +101,40 @@ class Login extends React.Component {
 					color: #1f618d;
 					font-family: "Arial";
 				 }
-
-				.button-style {
-					margin: auto auto;
-					cursor: pointer;
-					background-color: #1f618d;
-					color: #ffffff;
-					width: 150px;
-					height: 45px;
-					font-family: "Arial";
-					line-height: 1.9;
-					font-size: 1.4rem;
+				 .image1 {
+					animation: rotation infinite 20s linear;
+					pointer-events: none;
+					margin-left: auto;
+					margin-right: auto;
+					left: 0;
+					right: 0;
+					text-align: center;
+					z-index: 2;
 				}
+				@keyframes rotation {
+					from {
+						transform: rotate(0deg);
+					}
+					to {
+						transform: rotate(359deg);
+					}
+				}
+				 .button-style {
+						 margin: auto auto;
+						cursor: pointer;
+						background-color: #1f618d;
+						color: #ffffff;
+						width: 150px;
+						height: 45px;
+						font-family: "Arial";
+						line-height: 1.9;
+						font-size: 1.4rem;
+						opacity: 0.75;
+						transition: 0.3s;
+						cursor: pointer;
+						}
+				.button-style:hover {opacity: 1}
+
 				.text-style {
 					font-size: 1.4rem;
 					line-height: 1.6rem;
