@@ -12,7 +12,7 @@ function getinfo(user_info){
 	const header = {'Accept': "application/json",
 		"Content-Type": "application/x-www-form-urlencoded"};
 	const searchParams = new URLSearchParams(user_info);
-	return fetch("http://localhost:8080/login",
+	return fetch("http://35.196.17.177/api/login",
 		{method: "POST",
 			headers: header,
 			body: searchParams}).then(function(resp){
@@ -25,7 +25,7 @@ function createlogin(user_info){
 	const header = {'Accept': "application/json",
 		"Content-Type": "application/x-www-form-urlencoded"};
 	const searchParams = new URLSearchParams(user_info);
-	return fetch("http://localhost:8080/create",
+	return fetch("http://35.196.17.177/api/create",
 		{method: "POST",
 			headers: header,
 			body: searchParams}).then(function(resp){
@@ -36,7 +36,7 @@ function changetozipsearch(){
 	const header = {'Accept': "application/json",
 		"Content-Type": "application/x-www-form-urlencoded"};
 	const searchParams = new URLSearchParams();
-	return fetch("http://localhost:8080/change",
+	return fetch("http://35.196.17.177/api/change",
 		{method: "POST",
 			headers: header,
 			body: searchParams}).then(function(resp){
@@ -49,7 +49,7 @@ function reverttosimple(){
 	const header = {'Accept': "application/json",
 		"Content-Type": "application/x-www-form-urlencoded"};
 	const searchParams = new URLSearchParams();
-	return fetch("http://localhost:8080/change2",
+	return fetch("http://35.196.17.177/api/change2",
 		{method: "POST",
 			headers: header,
 			body: searchParams}).then(function(resp){

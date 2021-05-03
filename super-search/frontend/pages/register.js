@@ -3,7 +3,8 @@ import Router from "next/router";
 import jsCookie from "js-cookie";
 import {createAccount} from "../lib/utils.js"
 import {change_to_advance} from "../lib/utils.js"
-
+let good = false;
+let great = false;
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,10 +30,18 @@ class Login extends React.Component {
 			zipcode: this.state.zipcode
 		});
 		this.setState({loggedInUser});
+		this.setState({good: null});
+		this.setState({great: null});
 		if(loggedInUser.status == "success"){
 			const changesearch = await change_to_advance();
 			jsCookie.set("username", loggedInUser.username);
 			Router.replace("/loggedin");
+		}
+		else if(loggedInUser.error == "User not created"){
+
+			this.setState({good:true});
+		}else{
+			this.setState({great:true});
 		}
 	}
 
@@ -88,10 +97,16 @@ class Login extends React.Component {
 			<br />
 			<div className="button-style" onClick = {this.handleSubmit.bind(this)}>Submit</div>
 			<br /> <br />
+			{this.state.good ? (
+				<h4>User not created</h4>
+			): null}
+			{this.state.great ? (
+				<h4>Username taken</h4>
+			): null}
 			<style jsx>{`
 				  h1,
 				  h2{
-				  	color: black;
+					color: black;
 					font-family: "Comic Sans MS";
 				}
 				  h3,

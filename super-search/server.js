@@ -22,7 +22,7 @@ const config = {
 let simplesearch = 0;
 let username1;
 let userzipcode;
-app.get("/listplace", async (req, res) => {
+app.get("/api/listplace", async (req, res) => {
 	console.log(simplesearch);
 	const name = req.query.name;
 	let good = 0;
@@ -82,6 +82,8 @@ app.get("/listplace", async (req, res) => {
 					}
 				}
 			}else{
+				console.log("I go to listplace");
+
 				let query1;
 				if(username1 == null){
 					query1 = `Select * from movies join users on users.zipcode = movies.zip where users.zipcode = ${userzipcode} and movies.movie like '${name}%'`;
@@ -161,14 +163,14 @@ app.get("/listplace", async (req, res) => {
 	}
 });
 
-app.post("/change", async (req, res) => {
+app.post("/api/change", async (req, res) => {
 	//This is used to do zipsearch
 	simplesearch = 1;
 	console.log("Activated zip search");
 	res.json("Done");
 });
 
-app.post("/change2", async (req, res) => {
+app.post("/api/change2", async (req, res) => {
 	//This is used to revert back to simplesearch
 	simplesearch = 0;
 	username1 = null;
@@ -176,7 +178,7 @@ app.post("/change2", async (req, res) => {
 	res.json("Done");
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	try{
@@ -206,7 +208,7 @@ app.post("/login", async (req, res) => {
 	}
 });
 
-app.post("/create", async (req, res) => {
+app.post("/api/create", async (req, res) => {
 	let hash;
 	const username = req.body.username;
 	const password = req.body.password;
@@ -217,6 +219,7 @@ app.post("/create", async (req, res) => {
 		const results = await pool.query(query, [username, hash, zipcode]);
 		console.log(results);
 		if(results.rowCount == 1){
+			userzipcode = zipcode;
 			username1 = username;
 			res.json({status: "success", username: username });
 		}

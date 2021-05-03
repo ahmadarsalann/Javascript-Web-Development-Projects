@@ -16,7 +16,7 @@ class places extends React.Component {
 
 
 		// fetch the back-end response
-		fetch(`http://localhost:8080/listplace?name=${evt.target.value}`).then((resp) => {
+		fetch(`http://35.196.17.177/api/listplace?name=${evt.target.value}`).then((resp) => {
 			return resp.json();
 		})
 			.then((response) => {
